@@ -1,0 +1,18 @@
+what it is: an offset from the TaskScheduler base pointer that points to the start of the active jobs array in memory
+
+what its used for: roblox stores all their running background tasks (like physics, rendering, heartbeat)
+in a continuous list u need this offset to know exactly where that list begins
+
+how u use it: u add this offset to the TaskScheduler pointer to get the memory address of the first job.
+then u keep reading forward chunk by chunk (usually 16 bytes/0x10 at a time) to loop through every single job
+running in the game until u hit the end of the array
+
+
+HOW TO GET IT 🤑
+// finding JobsStart offset in ida:
+// 1. in that exact same function where u found TaskScheduler::Pointer
+// 2. look slightly below it for a for loop that iterates through the jobs
+// 3. it usually looks like this:
+//    v4 = *(_QWORD*)(a1 + JobStartOffset);
+//    for (i = *(_QWORD*)(a1 + JobEndOffset); v4 != i; v4 += 16)
+// 4. the `JobStartOffset` value being added to `a1` is ur JobsStart offset
