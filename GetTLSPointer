@@ -1,0 +1,8 @@
+what it is: a function inside roblox that gets the base pointer for tls (thread local storage) for the current running thread
+
+what its used for: TLS basically holds thread-specific data including the identity structure we just talked about in https://github.com/LockaSkids/Roblox-Offsets-Documentation/blob/main/GetCapabilities
+u call this function to actually grab that structure in memory so u can write ur permissions to it
+
+how u use it: u pass it the identitystructure::pointer (which is just a global pointer that tells this function where to look),
+and it returns the actual memory address where the current thread's identity stuff lives.
+then u just add the capabilities offset to that address and overwrite the mask to give urself full perms
