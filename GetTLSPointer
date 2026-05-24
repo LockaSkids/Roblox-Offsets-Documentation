@@ -6,3 +6,11 @@ u call this function to actually grab that structure in memory so u can write ur
 how u use it: u pass it the identitystructure::pointer (which is just a global pointer that tells this function where to look),
 and it returns the actual memory address where the current thread's identity stuff lives.
 then u just add the capabilities offset to that address and overwrite the mask to give urself full perms
+
+
+HOW TO GET IT 🤑
+// finding GetTLSPointer offset in ida:
+// 1. search for the string "Current Identity is %d"
+// 2. xref the string to find the function that uses it
+// 3. inside that function, look for the very first function call that happens before the string is used
+// 4. that first function call is ur GetTLSPointer offset
