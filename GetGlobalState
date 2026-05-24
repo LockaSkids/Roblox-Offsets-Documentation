@@ -1,0 +1,9 @@
+what it is: a function inside roblox that takes the scriptcontext instance and returns the main lua_State
+(aka the main thread where all the lua globals and environment stuff live)
+
+what its used for: this is basically the main part of execution. u cant run scripts without a lua state. since roblox hides the main state inside the 
+ScriptContext
+(which u grab from the datamodel), u gotta call this function to extract it
+
+how u use it: u pass it the scriptcontext pointer (plus a couple dummy pointers for identity and script that it fills out) and it gives you lua_State* once u got that
+u spawn ur own child thread off of it and use that child thread to compile and run ur custom scripts without crashing the main game
