@@ -1,0 +1,6 @@
+what it is: a pointer to roblox's task scheduler which holds all the active jobs (like heartbeat, renderstepped, etc) running in the game
+
+what its used for: its used to find memory addresses for specific background jobs some exploits use it to hook functions inside those jobs or to pull the datamodel out of them
+
+how u use it: u read this pointer add the jobsStart offset to find where the job list begins and the jobsend offset to see where it ends then u look through that list
+checking the jobName offset of each one until u find the specific job ur looking for
