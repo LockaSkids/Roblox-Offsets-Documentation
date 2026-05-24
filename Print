@@ -1,0 +1,10 @@
+what it is: calling standard roblox lua functions built into the environment (like print warn task.defer)
+
+what its used for: since we already spoofed our execution thread to have full identity and capability (that if you did) we have access to roblox's global functions
+withoout needing any memory offsets to find them (Tho if you havent done that You can just use the print offset to print anything in the console)
+
+how u use it: u just use standard lua c-api functions to grab the global by its name push ur arguements and call it for example
+lua_getglobal(NegroSploitState, "print");
+lua_pushstring(NegroSploitState, "NegroSploit injected!");
+lua_call(ExecutorState, 1, 0);
+this directly taps into roblox's print function and outputs to their console
