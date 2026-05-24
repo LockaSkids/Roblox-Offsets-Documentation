@@ -1,0 +1,6 @@
+what it is: basically a number roblox stores on every thread that says what that thread can and cant do
+
+what its used for: roblox checks this before u call any api if you dont got the right perms it just blocks u so u write to it and give urself max perms so nothing gets blocked
+
+if youre making an internal exploit
+you gotta set it on the lua thread and the tls struct if you skip one of them some stuff still wont work
