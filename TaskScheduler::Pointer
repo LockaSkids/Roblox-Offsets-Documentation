@@ -4,3 +4,12 @@ what its used for: its used to find memory addresses for specific background job
 
 how u use it: u read this pointer add the jobsStart offset to find where the job list begins and the jobsend offset to see where it ends then u look through that list
 checking the jobName offset of each one until u find the specific job ur looking for
+
+
+HOW TO GET IT 🤑
+// finding TaskScheduler::Pointer offset in ida:
+// 1. search for the string "TaskScheduler::Job: "
+// 2. double click the string to go to its location, then xref it (press X) to find where its used
+// 3. inside the function that uses the string, look at the very first function call
+// 4. it should look something like: sub_xxxxxx(qword_pointer, (__int64)v303);
+// 5. that first arguement (qword_pointer) is the address of TaskScheduler::Pointer
