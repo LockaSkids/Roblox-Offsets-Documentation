@@ -1,0 +1,20 @@
+what it is: an offset inside an individual Job structure that holds the string name of that specific job
+(like "Heartbeat" or "Render")
+
+what its used for: since there's a bunch of jobs running, u need a way to identify which one is which
+without this u wouldnt know if ur looking at the physics job or the script execution job
+
+how u use it — while ur looping through the jobs array using JobsStart, u add the JobName offset to each job u find.
+then u read the string at that address and check if it matches the job u want
+(like "WaitingHybridScriptsJob" or whatever ur looking for). once the names match, u know u found ur target job
+
+
+HOW TO GET IT 🤑
+
+// finding JobName offset in ida:
+// 1. in that same function again, look right around where the string is used
+// 2. look for where it assigns a string pointer to a variable from a struct
+// 3. it usually looks like this: 
+//    v6 = sub_791C70(v18, "TaskScheduler::Job: ");
+//    v7 = (_QWORD*)(*(_QWORD*)v4 + JobNameOffset);
+// 4. that `JobNameOffset` value is ur JobName offset
