@@ -1,0 +1,7 @@
+what it is: a big array in roblox's memory that maps normal opcodes to the shuffled ones roblox uses
+
+what its used for: roblox shufles their opcodes so u cant just compile bytecode normally and feed it in u use this
+table to convert ur opcodes to match what roblox expects so the VM actually accepts ur scripts
+
+how u use it: when compiling u take each opcode do some math on it
+then look it up in the table to get the shuffled version if this address is wrong or outdated ur scripts just wont execute
