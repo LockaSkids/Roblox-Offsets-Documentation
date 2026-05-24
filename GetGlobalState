@@ -7,3 +7,13 @@ ScriptContext
 
 how u use it: u pass it the scriptcontext pointer (plus a couple dummy pointers for identity and script that it fills out) and it gives you lua_State* once u got that
 u spawn ur own child thread off of it and use that child thread to compile and run ur custom scripts without crashing the main game
+
+
+HOW TO GET IT 🤑
+// finding GetGlobalState offset in ida:
+// 1. search for the string "Script Start" and go to its first xref
+// 2. look for a line assigning the string like this: *(_QWORD *)(ScriptVMState + 256) = "Script Start";
+// 3. that `ScriptVMState` comes from L->userdata->Shared->ScriptVMState
+// 4. trace how `ScriptVMState` gets passed by following the variables upwards until u find the underlying `lua_State` (L)
+// 5. u will see some decryption math and a function call right before it
+// 6. look at the xrefs for THAT specific function u found, and that function address is ur GetGlobalState offset
