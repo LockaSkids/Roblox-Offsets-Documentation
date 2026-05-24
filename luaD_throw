@@ -1,0 +1,6 @@
+what is is: a core internal luau function that throws execution errors
+
+what its used for: when a script errors or crashes roblox calls this to stop it via their robloxcrashhandler (correct me if im wrong) exploits use this to catch those erros
+so the game doesnt crash
+
+how u use it: just implement it to intercept lua errors and hide them or handle them urself before roblox sees them
